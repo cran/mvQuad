@@ -290,14 +290,15 @@ readRule <- function(file=NULL){
   data.table::setnames(tmp, tmp.names)
   data.table::setkeyv(x = tmp, cols = tmp.names[-(dim+1)])
 
-  w.c <- 0
-  tmp <- tmp[, w:=sum(w.c), by = eval(tmp.names[-(dim+1)])]
+  w.c <- NULL
+
+  tmp[, w:=sum(w.c), by = eval(tmp.names[-(dim+1)])]
   tmp <- unique(tmp, by = eval(tmp.names[-(dim+1)]))
 
   tmp <- tmp[w!=0]
 
   n <- tmp[,tmp.names[-(dim+1)], with=FALSE]
-  w <- tmp[,tmp.names[(dim+1)], with=FALSE]
+  w <- tmp[, w]
 
   row.names(n) <- NULL
   colnames(n) <- NULL

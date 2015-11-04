@@ -16,8 +16,8 @@ grid the product-rule or the combination-technique can be applied.
 \tabular{ll}{
 Package: \tab mvQuad\cr
 Type: \tab Package\cr
-Version: \tab 1.0-0\cr
-Date: \tab 2015-09-01\cr
+Version: \tab 1.0-3\cr
+Date: \tab 2015-11-03\cr
 License: \tab GPL-3\cr
 }
 }

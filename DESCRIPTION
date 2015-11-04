@@ -1,8 +1,8 @@
 Package: mvQuad
 Type: Package
 Title: Methods for Multivariate Quadrature
-Version: 1.0-2
-Date: 2015-10-28
+Version: 1.0-3
+Date: 2015-11-03
 Author: Constantin Weiser (HHU of Duesseldorf / Germany)
 Maintainer: Constantin Weiser <weiserc@hhu.de>
 Description: Provides methods to construct multivariate grids,
@@ -18,6 +18,6 @@ Suggests: knitr, rmarkdown
 VignetteBuilder: knitr
 RoxygenNote: 5.0.0
 NeedsCompilation: no
-Packaged: 2015-11-01 05:41:15 UTC; weiserc
+Packaged: 2015-11-03 17:39:29 UTC; weiserc
 Repository: CRAN
-Date/Publication: 2015-11-01 18:36:22
+Date/Publication: 2015-11-04 01:44:15

@@ -11,8 +11,88 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
   
-bibliography: library.bib
+references:
+- id: DavisRabinowitz1984
+  title: Methods of numerical integration
+  author: 
+  - family: Davis
+    given: P.J.
+  - family: Rabinowitz
+    given: P.
+  publisher: Academic Press
+  type: book
+  issued:
+    year: 1984
+
+- id: Gerstner1998
+  title: Numerical integration using sparse grids
+  author:
+  - family: Gerstner
+    given: T.
+  - family: Griebel
+    given: M.
+  container-title: Numerical Algorithms
+  volume: 18
+  page: 209-232
+  type: article-journal
+  issued:
+    year: 1998
+    
+- id: Heiss2008
+  title: Likelihood approximation by numerical integration on sparse grids
+  author:
+  - family: Heiss
+    given: F.
+  - family: Winschel
+    given: V.
+  container-title: Journal of Econometrics
+  volume: 144
+  page: 62-80
+  type: article-journal
+  issued:
+    year: 2008
+
+
+- id: Jackel2005
+  title: A note on multivariate Gauss-Hermite quadrature
+  author:
+  - family: Jäckel
+    given: P.
+  type: article-journal
+  container-title: mimeo
+  issued:
+    year: 2005
+    
+    
+- id: GenzKeister1996
+  title: Fully symmetric interpolatory rules for multiple integrals over infinite regions with Gaussian weight
+  author:
+  - family: Genz
+    given: A.
+  - family: Keister
+    given: B.D.
+  container-title: Journal of Computational and Applied Mathematics
+  volume: 71
+  page: 299-309
+  type: article-journal
+  issued:
+    year: 1996
+
+
+- id: Petras2003
+  title: Smolyak cubature of given polynomial degree with few nodes for increasing dimension
+  author:
+  - family: Petras
+    given: K.
+  container-title: Numerische Mathematik
+  volume: 93
+  page: 729-753
+  type: article-journal
+  issued:
+    year: 2003
+    
 ---
+
 
 
 ## Introduction
@@ -215,7 +295,7 @@ The following four figures shows the adjusted grid added by the contour plot of 
   contour(seq(-5,5,length.out=100),seq(-5,5,length.out=100),yy,asp=1, labels="", add = T, col="gray")
 ```
 
-The upper left figure shows the initial grid (optimal for zero mean an variance equals 1). The upper right figure shows a rescaled grid, where for the mean and variances (diagonal elements of $C$) is accounted for. In both lower pictures it's also accounted for the covariance, left via the spectral-decomposition, right via the Cholesky decomposition.
+The upper left figure shows the initial grid (optimal for zero mean an variance equals 1). The upper right figure shows a rescaled grid, where for the mean and variances (diagonal elements of $C$) is accounted for. In both lower pictures it's also accounted for the covariance, left via the spectral-decomposition, right via the Cholesky decomposition [@Jackel2005].
 
 Here is the code for the rescaling:
 
