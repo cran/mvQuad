@@ -1,13 +1,13 @@
-53f03622a78a1cecd732c36e7b4dc86c *DESCRIPTION
+f6e03cf75ff79969998f5dc06a8892cc *DESCRIPTION
 167f9ea2514426b9bdca2c5e0e6934b3 *NAMESPACE
-fc7936be5824ec45996cb363a27e0c3e *R/mvQuad.R
+a908e32d3bc5170ec73f2172b67f5808 *R/mvQuad.R
 7718701c744fc198769e5f3bbf7eeb5c *R/zzz.R
 2cd74ce91bac33ce9f704824b38f5eda *build/vignette.rds
 bc9bf9729b3b565ffd432d67d6552298 *data/QuadRules.RData
 63c6b3621d66f5cf98f6dad3ea817503 *demo/00Index
 07959c313d1b6b874d2bbf849b079244 *demo/mvQuad_demo.R
 69e24f39b594302c36ce1ab6565806c4 *inst/CITATION
-b154b6c022297ba582ee4c0b7b0a1e74 *inst/NEWS
+5aca1311fa22cdf0a9180567fcc7b786 *inst/NEWS
 629b7a5b2ec6552ca3a3bd9ca4122b36 *inst/doc/mvQuad_intro.R
 76de36726bc44cb6c9881dae4ede019d *inst/doc/mvQuad_intro.Rmd
 c13f96139fc579471276a90aaf004068 *inst/doc/mvQuad_intro.html

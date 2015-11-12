@@ -518,15 +518,19 @@ getNodes <- function(grid){
       m <- grid$features$m
 
 
-      if (grid$features$dec.type==0) {
-         A <- diag(sqrt(diag(C)))
-      }
-      if (grid$features$dec.type==1) {
-         res.dec <- eigen(C)
-         A <- res.dec[[2]] %*% diag(sqrt(res.dec[[1]]))
-      }
-      if (grid$features$dec.type==2) {
-         A <- t(chol(C))
+      if (grid$dim > 1) {
+        if (grid$features$dec.type==0) {
+          A <- diag(sqrt(diag(C)))
+        }
+        if (grid$features$dec.type==1) {
+          res.dec <- eigen(C)
+          A <- res.dec[[2]] %*% diag(sqrt(res.dec[[1]]))
+        }
+        if (grid$features$dec.type==2) {
+          A <- t(chol(C))
+        }
+      } else {
+        A <- as.matrix(sqrt(C))
       }
 
       n <- t(A %*% t(grid$nodes))
@@ -803,6 +807,7 @@ rescale.NIGrid <- function(object, domain=NULL, m=NULL, C=NULL, dec.type=0, ...)
    }
 
    if (is.null(domain)) {
+      C <- as.matrix(C)
       C.dim <- dim(C)
       if (C.dim[1]==C.dim[2]) {
          C.dim <- C.dim[1]
