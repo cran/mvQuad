@@ -1,8 +1,8 @@
 Package: mvQuad
 Type: Package
 Title: Methods for Multivariate Quadrature
-Version: 1.0-4
-Date: 2015-11-11
+Version: 1.0-5
+Date: 2016-02-18
 Author: Constantin Weiser (HHU of Duesseldorf / Germany)
 Maintainer: Constantin Weiser <weiserc@hhu.de>
 Description: Provides methods to construct multivariate grids, which can be used
@@ -12,12 +12,12 @@ Description: Provides methods to construct multivariate grids, which can be used
     multidimensional grid the product-rule or the combination- technique can be
     applied.
 License: GPL-3
-Depends: R (>= 2.10)
-Imports: rgl, data.table, methods
+Depends: R (>= 3.0)
+Imports: rgl, data.table, statmod, methods
 Suggests: knitr, rmarkdown
 VignetteBuilder: knitr
 RoxygenNote: 5.0.1
 NeedsCompilation: no
-Packaged: 2015-11-12 06:17:17 UTC; weiserc
+Packaged: 2016-02-18 15:26:14 UTC; weiserc
 Repository: CRAN
-Date/Publication: 2015-11-12 12:58:27
+Date/Publication: 2016-02-18 18:46:29

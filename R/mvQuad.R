@@ -29,16 +29,14 @@
 .hardCodedTypes <- c("cNC1", "cNC2", "cNC3", "cNC4", "cNC5", "cNC6",
                     "oNC0", "oNC1", "oNC2", "oNC3")
 
-.preDefinedTypes <- structure(list(GLe = structure(list(levels = 1:45), .Names = "levels"),
-                                   nLe = structure(list(levels = c(1L, 3L, 3L, 7L, 7L, 7L, 15L,
+.extGaussQuad <- c("GLe", "GLa", "GHe", "GHN")
+
+.preDefinedTypes <- structure(list(nLe = structure(list(levels = c(1L, 3L, 3L, 7L, 7L, 7L, 15L,
                                                                    15L, 15L, 15L, 15L, 15L, 31L, 31L, 31L, 31L, 31L, 31L, 31L,
                                                                    31L, 31L, 31L, 31L, 31L, 63L)), .Names = "levels"),
                                    GKr = structure(list(levels = c(NA, NA, 3L, NA, 5L, NA, 7L, NA, 9L, NA, 11L,
                                                                    NA, 13L, NA, 15L, NA, 17L, NA, 19L, NA, 21L, NA, 23L,
                                                                    NA, 25L, NA, 27L, NA, 29L)), .Names = "levels"),
-                                   GLa = structure(list(levels = 1:30), .Names = "levels"),
-                                   GHe = structure(list(levels = 1:45), .Names = "levels"),
-                                   GHN = structure(list(levels = 1:45), .Names = "levels"),
                                    nHe = structure(list(levels = c(1L, 3L, 3L, 7L, 9L, 9L, 9L, 9L, 17L, 19L,
                                                         19L, 19L, 19L, 19L, 19L, 31L, 33L, 35L, 35L, 35L, 35L,
                                                         35L, 35L, 35L, 35L)), .Names = "levels"),
@@ -46,7 +44,7 @@
                                                                    19L, 19L, 19L, 19L, 19L, 31L, 33L, 35L, 35L, 35L, 35L,
                                                                    35L, 35L, 35L, 35L)), .Names = "levels"),
                                    Leja = structure(list(levels = 1:141), .Names = "levels")),
-                              .Names = c("GLe", "nLe", "GKr", "GLa", "GHe", "GHN", "nHe", "nHN", "Leja"))
+                              .Names = c("nLe", "GKr", "nHe", "nHN", "Leja"))
 
 
 #' reads a quadrature-rule from a text file
@@ -127,7 +125,7 @@ readRule <- function(file=NULL){
 
   if (class(type)!="character") stop("type of quadrature rule not appropriate defined")
 
-   if (!((type %in% c(.hardCodedTypes, names(.preDefinedTypes))))) {
+   if (!((type %in% c(.hardCodedTypes, names(.preDefinedTypes), .extGaussQuad)))) {
       if (!existsFunction(type)) {
          stop("type of quadrature rule is not supported")
       } else {
@@ -201,13 +199,42 @@ readRule <- function(file=NULL){
       }
    }
 
-   if (type %in% names(.preDefinedTypes)) {
-      if (!(level %in% c(1:length(QuadRules[[type]]))) ){
-         stop(paste("degree (",level,") for rule '", type, "' not supported \n") )
-      } else {
-         return(QuadRules[[type]][[level]])
-      }
-   }
+  if (type %in% names(.preDefinedTypes)) {
+    if (!(level %in% c(1:length(QuadRules[[type]]))) ){
+      stop(paste("degree (",level,") for rule '", type, "' not supported \n") )
+    } else {
+      return(QuadRules[[type]][[level]])
+    }
+  }
+
+  if (type %in% .extGaussQuad) {
+    if (type=="GLe") {
+      tmp.nw <- gauss.quad(level, kind="legendre")
+      tmp.nw$nodes <- tmp.nw$nodes / 2 + 0.5
+      tmp.nw$weights <- tmp.nw$weights / 2
+      tmp.dom <- list(initial.domain=matrix(c(0,1), ncol = 2))
+    }
+
+    if (type=="GLa") {
+      tmp.nw <- gauss.quad(level, kind="laguerre")
+      tmp.dom <- list(initial.domain=matrix(c(0,Inf), ncol = 2))
+    }
+
+    if (type=="GHe") {
+      tmp.nw <- gauss.quad(level, kind="hermite")
+      tmp.nw$nodes <- tmp.nw$nodes * sqrt(2)
+      tmp.nw$weights <- tmp.nw$weights * sqrt(2) / sqrt(exp(-(tmp.nw$nodes^2)))
+      tmp.dom <- list(initial.domain=matrix(c(-Inf, Inf), ncol = 2))
+    }
+    if (type=="GHN") {
+      tmp.nw <- gauss.quad(level, kind="hermite")
+      tmp.nw$nodes <- tmp.nw$nodes * sqrt(2)
+      tmp.nw$weights <- tmp.nw$weights * sqrt(2) / sqrt(exp(-(tmp.nw$nodes^2)))*dnorm(tmp.nw$nodes)
+      tmp.dom <- list(initial.domain=matrix(c(-Inf, Inf), ncol = 2))
+    }
+
+    return(list(n = as.numeric(tmp.nw$nodes), w = as.numeric(tmp.nw$weights), features=tmp.dom))
+  }
 
 }
 
