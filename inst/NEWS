@@ -1,11 +1,18 @@
+Changes in version 1.0-8 (2023-09-18)
+
+  [bug fix] new mail address for maintainer
+
 Changes in version 1.0-6 (2016-07-19)
+
   [new feature] The aggregation of the nodes and weights while the creation of a sparse
   grid is no longer done at the very end but repeatetly. This change saves a lot of
   memory - especially for high accuracy levels in high dimensions.
+
   [new feature] mvQuad do not longer depend on the "rgl"-package but suggests.
   This enables the use of mvQuad on systems without X11-environment (like HPC-Clusters)
 
 Changes in version 1.0-5 (2016-02-18)
+
   [new feature] Nodes and weights for Gaussian quadrature (GLa, GLe, GHe) are now
   computed by "gauss.quad" (package: statmod). This enables use of higher order rules
 

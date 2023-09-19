@@ -1,4 +1,4 @@
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
   library(mvQuad)
 
   # create grid
@@ -15,7 +15,7 @@
   # compute the approximated value of the integral
   A <- quadrature(myFun2d, grid = nw)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 # via an user-defined function
   myRule.fun <- function(l){
     n <- seq(1, 2*l-1, by=2)/ (l*2)
@@ -28,13 +28,13 @@
   nw.fun <- createNIGrid(d=1, type = "myRule.fun", level = 10)
   print(data.frame(nodes=getNodes(nw.fun), weights=getWeights(nw.fun)))
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 # via a text-file
   myRule.txt <- readRule(file=system.file("extdata", "oNC0_rule.txt", package = "mvQuad"))
   nw.txt <- createNIGrid(d=1, type = myRule.txt, level = 10)
   print(data.frame(nodes=getNodes(nw.txt), weights=getWeights(nw.txt)))
 
-## ----echo=FALSE----------------------------------------------------------
+## ----echo=FALSE---------------------------------------------------------------
   txt <- readLines(system.file("extdata", "oNC0_rule.txt", package = "mvQuad"))  
   for (i in 1:9) {
     cat(i,"\t", txt[i], "\n")
@@ -45,15 +45,15 @@
   
   
 
-## ----fig.show="hold", fig.width=4.5--------------------------------------
+## ----fig.show="hold", fig.width=4.5-------------------------------------------
   nw <- createNIGrid(dim=2, type="cNC1", level=5, ndConstruction = "product")
   plot(nw, main="Example: Product-Rule")
 
-## ----fig.show="hold", fig.width=4.5--------------------------------------
+## ----fig.show="hold", fig.width=4.5-------------------------------------------
   nw <- createNIGrid(dim=2, type="cNC1", level=5, ndConstruction = "sparse")
   plot(nw, main="Example: Combination Technique")
 
-## ---- fig.height=6, fig.width=6, echo=FALSE, message=FALSE---------------
+## ----fig.height=6, fig.width=6, echo=FALSE, message=FALSE---------------------
   nw <- createNIGrid(dim=2, type="GHe", level=3)
 
   C = matrix(c(1,0.6,0.6, 2),2)
@@ -88,7 +88,7 @@
   plot(nw, main="Cholesky dec.", xlim=c(-6,6), ylim=c(-6,6), pch=8)
   contour(seq(-5,5,length.out=100),seq(-5,5,length.out=100),yy,asp=1, labels="", add = T, col="gray")
 
-## ---- fig.height=6, fig.width=6, eval=FALSE------------------------------
+## ----fig.height=6, fig.width=6, eval=FALSE------------------------------------
 #    nw <- createNIGrid(dim=2, type="GHe", level=3)
 #  
 #    # no rescaling
@@ -104,7 +104,7 @@
 #    rescale(nw, m = m, C = C, dec.type = 2)
 #    plot(nw, main="Cholesky dec.", xlim=c(-6,6), ylim=c(-6,6), pch=8)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
   nw <- createNIGrid(dim=2, type="GHe", level=6, ndConstruction = "sparse")
 
   plot(nw)

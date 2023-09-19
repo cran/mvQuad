@@ -115,7 +115,7 @@ readRule <- function(file=NULL){
 
 .grid1D <- function(type, level=1) {
 
-   if (class(type)=="costumRule"){
+   if (inherits(type, "costumRule")){
      if (!(level %in% c(1:length(type)))){
        stop(paste("degree (",level,") for user defined rule not supported \n") )
      } else {
@@ -123,7 +123,7 @@ readRule <- function(file=NULL){
      }
    }
 
-  if (class(type)!="character") stop("type of quadrature rule not appropriate defined")
+  if (!inherits(type, "character")) stop("type of quadrature rule not appropriate defined")
 
    if (!((type %in% c(.hardCodedTypes, names(.preDefinedTypes), .extGaussQuad)))) {
       if (!existsFunction(type)) {
@@ -429,9 +429,9 @@ createNIGrid <- function(dim=NULL, type=NULL, level=NULL,
       stop("'dim' is not appropriate defined")
    }
 
-   if (class(type)!="list"){
-     if (class(type)=="character") type <- as.list(type)
-     if (class(type)=="costumRule") type <- list(type)
+   if (!inherits(type, "list")){
+     if (inherits(type, "character")) type <- as.list(type)
+     if (inherits(type, "costumRule")) type <- list(type)
    }
 
    if (is.null(type) | (length(type) > 1 & length(type) < dim)) {
@@ -479,8 +479,8 @@ createNIGrid <- function(dim=NULL, type=NULL, level=NULL,
 
    type.text <- lapply(type,
                        function(tmp){
-                         if (class(tmp)=="costumRule") return("costum")
-                         if (class(tmp)=="character")  return(tmp)
+                         if (inherits(tmp, "costumRule")) return("costum")
+                         if (inherits(tmp, "character"))  return(tmp)
                        })
    object$type <- unlist(type.text)
    object$level <- level
